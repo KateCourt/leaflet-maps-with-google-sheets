@@ -23,7 +23,7 @@ $(window).on('load', function() {
           // todo check for errors
           var i;
         for (i = 0; i < datajson.length; i++) {
-            console.log(datajson[i])
+            console.log(datajson[i].latitude)
             // L.marker([datajson[i].latitude, datajson[i].longitude]).addTo(map)
         }
       }
