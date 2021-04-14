@@ -17,15 +17,16 @@ $(window).on('load', function() {
   $.getJSON(
       "https://sheets.googleapis.com/v4/spreadsheets/10hoBLjIu0_qothMvChC8mkiI_QyEh7KCwOs4TFxq0kk/values/Sheet1?key=AIzaSyBx3U9RNDkd76gmJ8YfFR3CHlTNP5eF9kk",
       (data) => {
-        console.log('test4')
+        console.log('test5')
 
           var datajson = Papa.parse(Papa.unparse(data['values']), {header: true} ).data
           // todo check for errors
           var i;
         for (i = 0; i < datajson.length; i++) {
-            console.log(datajson[i].latitude)
-            // L.marker([datajson[i].latitude, datajson[i].longitude]).addTo(map)
+            L.marker([datajson[i]["Latitude"], datajson[i]["Longitude"]]).addTo(map)
         }
+          $('#map').css('visibility', 'visible');
+          $('.loader').hide();
       }
       )
 
