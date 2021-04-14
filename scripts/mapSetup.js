@@ -13,20 +13,18 @@ $(window).on('load', function() {
     });
   }
 
-    // var parse = function(res) {
-    //     return Papa.parse(Papa.unparse(res[0].values), {header: true} ).data;
-    // }
 
   $.getJSON(
       "https://sheets.googleapis.com/v4/spreadsheets/10hoBLjIu0_qothMvChC8mkiI_QyEh7KCwOs4TFxq0kk/values/Sheet1?key=AIzaSyBx3U9RNDkd76gmJ8YfFR3CHlTNP5eF9kk",
       (data) => {
-        console.log('test2')
+        console.log('test3')
 
-          var djson = Papa.parse(Papa.unparse(data['values']), {header: true} )
-          console.log(djson)
-         // alert(data[0].values)
-         // var parsedData = parse(data)
-         //  alert(parsedData[0])
+          var datajson = Papa.parse(Papa.unparse(data['values']), {header: true} ).data
+          // todo check for errors
+          var i;
+        for (i = 0; i < datajson.length; i++) {
+            L.marker([datajson[i].latitude, datajson[i].longitude]).addTo(map)
+        }
       }
       )
 
