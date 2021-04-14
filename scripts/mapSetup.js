@@ -21,7 +21,9 @@ $(window).on('load', function() {
       "https://sheets.googleapis.com/v4/spreadsheets/10hoBLjIu0_qothMvChC8mkiI_QyEh7KCwOs4TFxq0kk/values/Sheet1?key=AIzaSyBx3U9RNDkd76gmJ8YfFR3CHlTNP5eF9kk",
       (data) => {
         console.log('test1')
-        console.log(data['values'])
+
+          var djson = Papa.parse(Papa.unparse(data['values']), {header: true} )
+          console.log(djson)
          // alert(data[0].values)
          // var parsedData = parse(data)
          //  alert(parsedData[0])
