@@ -15,7 +15,7 @@ $(window).on('load', function() {
 
 
   $.getJSON(
-      "https://sheets.googleapis.com/v4/spreadsheets/10hoBLjIu0_qothMvChC8mkiI_QyEh7KCwOs4TFxq0kk/values/Sheet1?key=AIzaSyBx3U9RNDkd76gmJ8YfFR3CHlTNP5eF9kk",
+      "https://sheets.googleapis.com/v4/spreadsheets/10hoBLjIu0_qothMvChC8mkiI_QyEh7KCwOs4TFxq0kk/values/Sheet1?key=AIzaSyBM3cy_9U5vFQyj52C2sY-fXcDvIcUqGa8",
       (data) => {
         console.log('test5')
 
