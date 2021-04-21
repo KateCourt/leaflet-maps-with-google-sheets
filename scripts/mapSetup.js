@@ -50,11 +50,40 @@ $(window).on('load', function() {
         });
     }
 
+
+
     // create cluster on map for list of points
     function createCluster(entries) {
+      // create markers
+        var originalMarker = L.AwesomeMarkers.icon({
+            icon: 'fa-file',
+            markerColor: 'blue'
+        });
+        var transcriptionMarker = L.AwesomeMarkers.icon({
+            icon: 'fa-copy',
+            markerColor: 'orange'
+        });
+
+        // create cluster for this location
         var markers = L.markerClusterGroup();
+
         for (var i = 0; i < entries.length; i++) {
-            markers.addLayer(L.marker([entries[i]["Latitude"], entries[i]["Longitude"]]));
+            if (entries[i]["Type of Text"] === 'translation') {
+                var marker = L.marker([entries[i]["Latitude"], entries[i]["Longitude"]], {icon: transcriptionMarker});
+                var content = "<h6>" + entries[i]["Short Title"] + "</h6> <p>" + entries[i]["Year of Publication"] + "</p";
+                marker.bindPopup(content);
+                markers.addLayer(marker);
+            } else if (entries[i]["Type of Text"] === 'original') {
+                var marker = L.marker([entries[i]["Latitude"], entries[i]["Longitude"]], {icon: originalMarker});
+                var content = "<h6>" + entries[i]["Short Title"] + "</h6> <p>" + entries[i]["Year of Publication"] + "</p";
+                marker.bindPopup(content);
+                markers.addLayer(marker);
+            } else {
+                var marker = L.marker([entries[i]["Latitude"], entries[i]["Longitude"]]);
+                var content = "<h6>" + entries[i]["Short Title"] + "</h6> <p>" + entries[i]["Year of Publication"] + "</p";
+                marker.bindPopup(content);
+                markers.addLayer(marker);
+            }
         }
         map.addLayer(markers);
     }
