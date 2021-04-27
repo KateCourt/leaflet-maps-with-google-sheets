@@ -3,8 +3,12 @@ $(window).on('load', function() {
 
     /** Get data from Google Sheet and add markers to map
      */
-    $.get( "https://republicantranslationsfunction.azurewebsites.net/api/servesheetskey", function( key ) {
-  $.getJSON(
+    $.ajax({
+        url:"https://republicantranslationsfunction.azurewebsites.net/api/servesheetskey",
+        headers:{ "Access-Control-Allow-Origin": "*" },
+        success: function(key) {
+        //    Get data from sheets
+        $.getJSON(
       "https://sheets.googleapis.com/v4/spreadsheets/10hoBLjIu0_qothMvChC8mkiI_QyEh7KCwOs4TFxq0kk/values/Sheet1?key=" + key,
       (data) => {
         console.log('test5')
@@ -39,7 +43,8 @@ $(window).on('load', function() {
           $('.loader').hide();
       }
       )
-    });
+        }
+    })
 
     //--------------------- Utility methods
 
